@@ -1,0 +1,27 @@
+### Scroll滚动脚本
+
+
+
+##### 节点创建和脚本绑定
+
+1. 创建一个`scrollView`的`Node`节点，并绑定`SuperScrollView`的脚本和`RequestResponse`的脚本，其中`SuperScrollView`脚本用于定义上拉加载的一些触发条件、`RequestResponse`用于处理请求的相关状态绑定。
+2. `SuperScrollView`中打开`pullRefresh`的选项，绑定上拉加载后的触发事件`FooterEvents`
+3. 创建`SuperScrollView`的直接子节点`view`，主要通过`Mask`隐藏超过屏幕的部分
+4. 再创建`view`的直接子节点`content`，承载内容区域，并绑定`SuperLayout`的布局脚本。它主要使用与每一个列表元素的更新触发，通过绑定`RefreshItemEvents`事件
+5. 如果有空状态`empty`和底部文字`footer`需要在同级目录`content`下创建相应的`node`
+
+
+
+##### 触发脚本绑定
+
+1. 需要创建一个脚本，用于触发相应的事件、绑定到相应的panel节点中。比如`RefreshLoadFriendPage` 脚本。并选中上一步创建的`SuperScrollView`节点、`SuperLayout`的`content`节点。如果有`empty`和`footer`节点，也需要绑定。
+
+##### `SuperLayout`脚本属性绑定
+
+1. 绑定对应的`SuperLayOut`的脚本、对应的`ScrollView`、以及我们需要的`view`脚本。
+2. 主要的是`prefab`属性，他表示我们需要渲染的每一个单独的`item`。每一个`item`都需要继承`SuperScrollViewItem`。用于`superLayout`去渲染内容。
+
+
+
+
+
