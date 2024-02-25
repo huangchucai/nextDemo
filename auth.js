@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { addUser, getUser } from "@/lib/prisma";
-import { use } from "marked";
 
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -49,7 +48,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     async jwt({ token, user, account }) {
       console.log('----jwt', user, account, token, 'jwt----');
-      
+
       if(account && account.type === 'credentials' && user) {
         console.log('----jwt--进入--jwt----');
         token.userId = user.userId
@@ -62,4 +61,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session;
     }
   },
+  trustHost: true
 });
